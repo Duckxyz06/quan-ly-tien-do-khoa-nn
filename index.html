@@ -38,7 +38,7 @@
         </div>
     </nav>
 
-    <main class="p-6 max-w-7xl mx-auto">
+   <main class="p-6 max-w-7xl mx-auto">
         <h2 class="text-xl font-bold text-gray-800 mb-6 flex items-center gap-2">
             <i class="fas fa-chart-pie text-red-600"></i> Dashboard Tổng quan
         </h2>
@@ -75,233 +75,155 @@
                 <p class="text-green-600 text-[9px] mt-2 font-bold uppercase tracking-tighter">Chi đoàn trực thuộc</p>
             </div>
         </div>
-        <button class="relative bg-gray-50 text-gray-400 px-6 py-3 rounded-2xl font-bold transition-all flex items-center gap-3 border border-gray-100 uppercase text-[10px] tracking-widest cursor-not-allowed group overflow-hidden shadow-sm">
-    <i class="fas fa-chart-line opacity-50"></i>
-    
-    <div class="flex flex-col items-start leading-none">
-        <span>Tiến độ tổng quan</span>
-        <span class="text-[7px] text-orange-500 mt-1 font-black tracking-[0.2em]">Đang phát triển</span>
-    </div>
-
-    <span class="absolute -right-7 top-2 bg-red-500 text-white text-[7px] px-7 py-1 rotate-45 font-black shadow-sm ring-2 ring-white/20 uppercase tracking-tighter">
-        SOON
-    </span>
-
-    <div class="absolute inset-0 bg-white/40 group-hover:bg-transparent transition-all"></div>
-</button>
 
         <div class="space-y-6 mb-10">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-        <div class="lg:col-span-4 relative">
-            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400">
-                <i class="fas fa-search text-sm"></i>
-            </span>
-            <input type="text" id="search-input" oninput="renderClasses()" placeholder="Tìm nhanh Chi đoàn (VD: ĐHANH...)" 
-                   class="w-full pl-11 pr-4 py-4 border border-gray-100 rounded-[1.5rem] outline-none focus:ring-2 focus:ring-red-500 bg-white shadow-sm transition-all text-sm font-medium">
-        </div>
-        
-        <div class="lg:col-span-8 flex flex-wrap gap-2 items-center justify-end">
-            <button id="btn-edit-toggle" onclick="toggleEditMode()" class="bg-white text-gray-700 border border-gray-100 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-gray-50 transition-all shadow-sm">
-                <i id="edit-icon" class="fas fa-pen-nib text-blue-500"></i> <span id="edit-text">Edit</span>
-            </button>
-
-            <button onclick="exportTotalExcelReport()" class="bg-white text-blue-600 border border-blue-100 px-5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-blue-50 transition-all shadow-sm">
-                <i class="fas fa-file-excel"></i> Xuất Báo Cáo Tổng
-            </button>
-
-            <button onclick="openBulkTaskModal()" class="bg-white text-purple-600 border-2 border-purple-100 px-5 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-purple-600 hover:text-white transition-all shadow-sm">
-                <i class="fas fa-tasks"></i> Nhập Tiến Độ Tổng
-            </button>
-
-            <div id="select-all-box" class="hidden items-center gap-2 bg-gray-100 px-4 py-3 rounded-xl">
-                <input type="checkbox" id="checkbox-all" onchange="selectAllClasses(this)" class="w-4 h-4 accent-blue-600 cursor-pointer">
-                <label for="checkbox-all" class="text-[10px] font-black text-gray-500 uppercase cursor-pointer">Tất cả</label>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                <div class="lg:col-span-4 relative">
+                    <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-gray-400">
+                        <i class="fas fa-search text-sm"></i>
+                    </span>
+                    <input type="text" id="search-input" oninput="renderClasses()" placeholder="Tìm nhanh Chi đoàn..." 
+                           class="w-full pl-11 pr-4 py-4 border border-gray-100 rounded-[1.5rem] outline-none focus:ring-2 focus:ring-red-500 bg-white shadow-sm transition-all text-sm font-medium">
+                </div>
+                
+                <div class="lg:col-span-8 flex flex-wrap gap-2 items-center justify-end">
+                    <button id="btn-edit-toggle" onclick="toggleEditMode()" class="bg-white text-gray-700 border border-gray-100 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-sm hover:bg-gray-50">
+                        <i id="edit-icon" class="fas fa-pen-nib text-blue-500"></i> <span id="edit-text">Edit</span>
+                    </button>
+                    <button onclick="exportTotalExcelReport()" class="bg-white text-blue-600 border border-blue-100 px-5 py-3 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-blue-50">
+                        <i class="fas fa-file-excel"></i> Xuất Báo Cáo
+                    </button>
+                    <button onclick="openBulkTaskModal()" class="bg-white text-purple-600 border-2 border-purple-100 px-5 py-3 rounded-xl font-black text-[10px] uppercase tracking-widest hover:bg-purple-600 hover:text-white">
+                        <i class="fas fa-tasks"></i> Nhập Tiến Độ Tổng
+                    </button>
+                    <div id="select-all-box" class="hidden items-center gap-2 bg-gray-100 px-4 py-3 rounded-xl">
+                        <input type="checkbox" id="checkbox-all" onchange="selectAllClasses(this)" class="w-4 h-4 accent-blue-600">
+                        <label for="checkbox-all" class="text-[10px] font-black text-gray-500 uppercase">Tất cả</label>
+                    </div>
+                    <button id="btn-bulk-delete" onclick="deleteSelectedClasses()" class="hidden bg-red-600 text-white px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-pulse animate-pulse">
+                        <i class="fas fa-trash-alt"></i> Xóa (<span id="selected-count">0</span>)
+                    </button>
+                </div>
             </div>
 
-            <button id="btn-bulk-delete" onclick="deleteSelectedClasses()" class="hidden bg-red-600 text-white px-6 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest shadow-lg shadow-red-100 animate-pulse">
-                <i class="fas fa-trash-alt"></i> Xóa (<span id="selected-count">0</span>)
-            </button>
+            <div class="flex flex-wrap gap-3 items-center justify-between border-t border-gray-100 pt-6">
+                <div class="flex flex-wrap gap-2">
+                    <button onclick="openImportClassModal()" class="bg-green-50 text-green-600 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-green-600 hover:text-white">
+                        <i class="fas fa-file-import"></i> Nhập Lớp Excel
+                    </button>
+                    <button onclick="openModal()" class="bg-gray-900 text-white px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-red-700">
+                        <i class="fas fa-plus-circle"></i> Thêm Chi đoàn
+                    </button>
+                    <button onclick="openGlobalTaskModal()" class="bg-purple-50 text-purple-600 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-purple-600 hover:text-white border border-purple-100">
+                        <i class="fas fa-tasks"></i> Nhiệm vụ toàn khoa
+                    </button>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="backupData()" class="bg-blue-50 text-blue-600 px-4 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white">
+                        <i class="fas fa-cloud-download-alt"></i> Sao lưu
+                    </button>
+                    <button onclick="document.getElementById('restore-input').click()" class="bg-amber-50 text-amber-600 px-4 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-amber-600 hover:text-white">
+                        <i class="fas fa-upload"></i> Khôi phục
+                    </button>
+                    <input type="file" id="restore-input" class="hidden" accept=".json" onchange="restoreData(this)">
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="flex flex-wrap gap-3 items-center justify-between border-t border-gray-100 pt-6">
-        <div class="flex flex-wrap gap-2">
-            <button onclick="openImportClassModal()" class="bg-green-50 text-green-600 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-green-600 hover:text-white transition-all shadow-sm">
-                <i class="fas fa-file-import"></i> Nhập Lớp Excel
-            </button>
-
-            <button onclick="openModal()" class="bg-gray-900 text-white px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-red-700 transition-all shadow-lg">
-                <i class="fas fa-plus-circle"></i> Thêm Chi đoàn
-            </button>
-
-            <button onclick="openGlobalTaskModal()" class="bg-purple-50 text-purple-600 px-5 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-purple-600 hover:text-white transition-all shadow-sm border border-purple-100">
-                <i class="fas fa-tasks"></i> Nhiệm vụ toàn khoa
-            </button>
-        </div>
-
-        <div class="flex gap-2">
-            <button onclick="backupData()" class="bg-blue-50 text-blue-600 px-4 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-                <i class="fas fa-cloud-download-alt"></i> Sao lưu
-            </button>
-
-            <button onclick="document.getElementById('restore-input').click()" class="bg-amber-50 text-amber-600 px-4 py-3 rounded-xl font-bold text-[10px] uppercase tracking-widest hover:bg-amber-600 hover:text-white transition-all shadow-sm">
-                <i class="fas fa-upload"></i> Khôi phục
-            </button>
-            <input type="file" id="restore-input" class="hidden" accept=".json" onchange="restoreData(this)">
-        </div>
-    </div>
-</div>
-
-<div id="list-chi-doan" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    </div>
+        <div id="list-chi-doan" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </main>
-    
 
-   <footer class="mt-20 pb-10 px-6 text-center border-t border-gray-100 pt-10">
-        <div class="flex flex-col items-center gap-3">
-            <img src="./image_11.png" alt="Logo" class="w-8 h-8 grayscale opacity-20">
-            <p class="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em]">© 2025 Liên Chi Đoàn Khoa Ngoại Ngữ - Progress System</p>
-            <p class="text-[9px] text-gray-300 font-medium">Phát triển bởi <span class="text-red-400">Nguyễn Việt Đức</span></p>
-        </div>
-    </footer>
-
-    <div id="delete-modal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-md hidden items-center justify-center z-[100] p-4 transition-all">
-        <div class="bg-white p-10 rounded-[3rem] w-full max-w-sm shadow-2xl border border-red-50">
+    <div id="delete-modal" class="fixed inset-0 bg-gray-900/80 backdrop-blur-md hidden items-center justify-center z-[100] p-4">
+        <div class="bg-white p-10 rounded-[3rem] w-full max-w-sm shadow-2xl">
             <div class="text-center">
                 <div class="bg-red-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <i id="warning-icon-box" class="fas fa-exclamation-triangle text-red-600 text-4xl"></i>
+                    <i class="fas fa-exclamation-triangle text-red-600 text-4xl"></i>
                 </div>
-                <h3 class="text-2xl font-black text-gray-800 tracking-tight">Cẩn thận nhé!</h3>
-                <p id="delete-modal-msg" class="text-sm text-gray-400 mt-3 font-medium px-4"></p>
+                <h3 class="text-2xl font-black text-gray-800 uppercase">Cẩn thận!</h3>
+                <p id="delete-modal-msg" class="text-sm text-gray-400 mt-3"></p>
             </div>
             <div class="flex flex-col gap-3 mt-10">
-                <button id="confirm-delete-btn" class="w-full bg-red-600 text-white py-5 rounded-2xl font-bold text-xs uppercase shadow-xl shadow-red-200">XÁC NHẬN XÓA</button>
-                <button onclick="closeDeleteModal()" class="w-full py-4 text-gray-400 font-bold text-[10px] uppercase">HỦY BỎ</button>
+                <button id="confirm-delete-btn" class="w-full bg-red-600 text-white py-5 rounded-2xl font-bold text-xs uppercase shadow-xl shadow-red-200">Xác nhận xóa</button>
+                <button onclick="closeDeleteModal()" class="w-full py-4 text-gray-400 font-bold text-[10px] uppercase">Hủy</button>
             </div>
         </div>
     </div>
-<div id="import-class-modal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-md hidden items-center justify-center z-[60] p-4">
-    <div class="bg-white p-10 rounded-[3rem] w-full max-w-md shadow-2xl border border-green-50">
-        <div class="text-center mb-8">
-            <div class="bg-green-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-file-excel text-green-600 text-3xl"></i>
-            </div>
-            <h3 class="text-2xl font-black text-gray-800 tracking-tight">Nhập Chi đoàn hàng loạt</h3>
-            <div class="mt-3">
-                <button onclick="downloadClassTemplate()" class="group inline-flex items-center gap-2 text-[10px] font-black text-blue-500 uppercase tracking-widest hover:text-blue-700 transition-colors">
-                    <i class="fas fa-download animate-bounce"></i> Tải file mẫu Chi đoàn tại đây
-                </button>
-            </div>
-        </div>
 
-        <div class="space-y-4">
-            <input type="file" id="class-excel-input" accept=".xlsx, .xls" class="hidden" onchange="handleClassExcel(this)">
-            <button onclick="document.getElementById('class-excel-input').click()" class="w-full py-12 border-2 border-dashed border-gray-100 rounded-[2.5rem] flex flex-col items-center justify-center gap-3 hover:border-green-400 hover:bg-green-50/50 transition-all group">
-                <i class="fas fa-cloud-upload-alt text-4xl text-gray-200 group-hover:text-green-500"></i>
-                <span id="class-file-name" class="text-[10px] font-bold text-gray-400 group-hover:text-green-600 uppercase tracking-widest text-center px-4">Nhấp để chọn file Excel</span>
-            </button>
-        </div>
-
-        <div class="mt-8 flex gap-3">
-            <button onclick="closeImportClassModal()" class="flex-grow py-4 text-gray-400 font-bold text-[10px] uppercase hover:bg-gray-50 rounded-2xl transition-all">Hủy bỏ</button>
-            <button id="confirm-import-class-btn" onclick="processImportClass()" disabled class="flex-grow bg-gray-200 text-white py-4 rounded-2xl font-bold text-[10px] uppercase cursor-not-allowed tracking-widest transition-all shadow-lg">Xác nhận nhập</button>
-        </div>
-    </div>
-</div> <div id="bulk-task-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center backdrop-blur-sm p-4">
-    <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-xl font-black text-gray-800 uppercase tracking-tight">Nhập tiến độ tổng</h2>
-            <button onclick="closeBulkTaskModal()" class="text-gray-400 hover:text-red-500 transition-colors"><i class="fas fa-times"></i></button>
-        </div>
-
-        <div class="bg-purple-50 p-4 rounded-2xl mb-6 border border-purple-100">
-            <p class="text-[10px] font-bold text-purple-600 uppercase mb-2">Bước 1: Tải mẫu Excel</p>
-            <button onclick="downloadBulkTaskTemplate()" class="flex items-center gap-2 text-xs font-black text-purple-700 hover:underline">
-                <i class="fas fa-file-download"></i> Tải file Template mẫu (.xlsx)
-            </button>
-        </div>
-
-        <div class="space-y-4">
-            <p class="text-[10px] font-bold text-gray-400 uppercase">Bước 2: Tải lên file đã điền</p>
-            <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-200 rounded-[2rem] cursor-pointer hover:bg-gray-50 transition-all group">
-                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                    <i class="fas fa-cloud-upload-alt text-2xl text-gray-300 group-hover:text-purple-500 mb-2"></i>
-                    <p id="bulk-task-file-name" class="text-[10px] font-bold text-gray-400 uppercase">Nhấp để chọn file Excel</p>
+    <div id="import-class-modal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-md hidden items-center justify-center z-[60] p-4">
+        <div class="bg-white p-10 rounded-[3rem] w-full max-w-md shadow-2xl border border-green-50">
+            <div class="text-center mb-8">
+                <div class="bg-green-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <i class="fas fa-file-excel text-green-600 text-3xl"></i>
                 </div>
+                <h3 class="text-2xl font-black text-gray-800">Nhập Chi đoàn</h3>
+                <button onclick="downloadClassTemplate()" class="text-[10px] font-black text-blue-500 uppercase mt-2">Tải file mẫu tại đây</button>
+            </div>
+            <input type="file" id="class-excel-input" accept=".xlsx, .xls" class="hidden" onchange="handleClassExcel(this)">
+            <button onclick="document.getElementById('class-excel-input').click()" class="w-full py-12 border-2 border-dashed border-gray-100 rounded-[2.5rem] flex flex-col items-center justify-center gap-3 hover:border-green-400 hover:bg-green-50 transition-all">
+                <i class="fas fa-cloud-upload-alt text-4xl text-gray-200"></i>
+                <span id="class-file-name" class="text-[10px] font-bold text-gray-400 uppercase">Chọn file Excel</span>
+            </button>
+            <div class="mt-8 flex gap-3">
+                <button onclick="closeImportClassModal()" class="flex-grow py-4 text-gray-400 font-bold text-[10px] uppercase">Hủy</button>
+                <button id="confirm-import-class-btn" onclick="processImportClass()" disabled class="flex-grow bg-gray-200 text-white py-4 rounded-2xl font-bold text-[10px] uppercase">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="bulk-task-modal" class="fixed inset-0 bg-black/50 z-[100] hidden items-center justify-center backdrop-blur-sm p-4">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-black text-gray-800 uppercase">Nhập tiến độ tổng</h2>
+                <button onclick="closeBulkTaskModal()" class="text-gray-400 hover:text-red-500"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="bg-purple-50 p-4 rounded-2xl mb-6">
+                <button onclick="downloadBulkTaskTemplate()" class="text-xs font-black text-purple-700 uppercase underline">
+Tải file Template mẫu (.xlsx)</button>
+            </div>
+            <label class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-gray-200 rounded-[2rem] cursor-pointer hover:bg-gray-50 group">
+                <i class="fas fa-cloud-upload-alt text-2xl text-gray-300 group-hover:text-purple-500 mb-2"></i>
+                <p id="bulk-task-file-name" class="text-[10px] font-bold text-gray-400 uppercase">Chọn file Excel tiến độ</p>
                 <input type="file" id="bulk-task-input" class="hidden" accept=".xlsx, .xls" onchange="handleBulkTaskExcel(this)" />
             </label>
-            <button id="confirm-bulk-task-btn" disabled onclick="processBulkTaskImport()" class="w-full py-4 bg-gray-200 text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all cursor-not-allowed">Xác nhận cập nhật dữ liệu</button>
+            <button id="confirm-bulk-task-btn" disabled onclick="processBulkTaskImport()" class="w-full mt-4 py-4 bg-gray-200 text-white rounded-2xl font-black uppercase text-xs">Xác nhận cập nhật</button>
         </div>
     </div>
-</div>
-    <div id="class-modal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-md hidden items-center justify-center z-[50] p-4 transition-all">
-        <div class="bg-white p-10 rounded-[3rem] w-full max-w-md shadow-2xl border border-gray-50">
-            <div class="flex justify-between items-center mb-8">
-                <div>
-                    <h3 id="class-modal-title" class="text-2xl font-black text-gray-800 tracking-tight">Thông tin Chi đoàn</h3>
-                </div>
-                <button onclick="closeClassModal()" class="text-gray-300 hover:text-red-500"><i class="fas fa-times-circle text-2xl"></i></button>
+
+    <div id="global-task-modal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm hidden z-[100] items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="font-black text-xl text-gray-800 uppercase">Nhiệm vụ toàn khoa</h3>
+                <button onclick="closeGlobalTaskModal()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times"></i></button>
             </div>
-            
+            <div class="flex gap-2 mb-4">
+                <input type="text" id="new-global-task" placeholder="Tên nhiệm vụ..." class="flex-grow bg-gray-50 border-none rounded-2xl px-4 py-3 text-sm font-bold">
+                <button onclick="addGlobalTask()" class="bg-purple-600 text-white px-4 rounded-2xl font-bold"><i class="fas fa-plus"></i></button>
+            </div>
+            <div id="global-task-list" class="space-y-2 max-h-60 overflow-y-auto pr-2"></div>
+        </div>
+    </div>
+
+    <div id="class-modal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-md hidden items-center justify-center z-[50] p-4">
+        <div class="bg-white p-10 rounded-[3rem] w-full max-w-md shadow-2xl">
+            <div class="flex justify-between items-center mb-8">
+                <h3 id="class-modal-title" class="text-2xl font-black text-gray-800 uppercase">Thông tin lớp</h3>
+                <button onclick="closeClassModal()"><i class="fas fa-times-circle text-2xl text-gray-300"></i></button>
+            </div>
             <input type="hidden" id="edit-index">
             <div class="space-y-6">
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-2 ml-1">Tên Chi đoàn *</label>
-                    <input type="text" id="class-name" class="w-full p-4 bg-gray-50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 text-sm font-medium">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-2 ml-1">Sĩ số đoàn viên *</label>
-                    <input type="number" id="class-members" class="w-full p-4 bg-gray-50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 text-sm font-medium">
-                </div>
-                <div>
-                    <label class="block text-[10px] font-bold text-gray-400 uppercase mb-2 ml-1">Ghi chú</label>
-                    <input type="text" id="class-note" class="w-full p-4 bg-gray-50 border-none rounded-2xl outline-none focus:ring-2 focus:ring-blue-500 text-sm font-medium">
-                </div>
+                <div><label class="text-[10px] font-bold text-gray-400 uppercase mb-2">Tên Chi đoàn *</label><input type="text" id="class-name" class="w-full p-4 bg-gray-50 rounded-2xl outline-none"></div>
+                <div><label class="text-[10px] font-bold text-gray-400 uppercase mb-2">Sĩ số *</label><input type="number" id="class-members" class="w-full p-4 bg-gray-50 rounded-2xl outline-none"></div>
+                <div><label class="text-[10px] font-bold text-gray-400 uppercase mb-2">Ghi chú</label><input type="text" id="class-note" class="w-full p-4 bg-gray-50 rounded-2xl outline-none"></div>
             </div>
             <div class="mt-10 flex gap-3">
-                <button onclick="closeClassModal()" class="flex-grow py-4 text-gray-400 font-bold text-[10px] uppercase">HỦY BỎ</button>
-                <button onclick="saveClass()" class="flex-grow bg-blue-600 text-white py-4 rounded-2xl font-bold text-[10px] uppercase shadow-xl shadow-blue-100">LƯU THÔNG TIN</button>
+                <button onclick="closeClassModal()" class="flex-grow py-4 text-gray-400 font-bold text-[10px] uppercase">Hủy</button>
+                <button onclick="saveClass()" class="flex-grow bg-blue-600 text-white py-4 rounded-2xl font-bold text-[10px] uppercase shadow-lg">Lưu</button>
             </div>
         </div>
     </div>
-<div id="import-class-modal" class="fixed inset-0 bg-gray-900/60 backdrop-blur-md hidden items-center justify-center z-[60] p-4">
-    <div class="bg-white p-10 rounded-[3rem] w-full max-w-md shadow-2xl border border-green-50">
-        <div class="text-center mb-8">
-            <div class="bg-green-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <i class="fas fa-file-excel text-green-600 text-3xl"></i>
-            </div>
-            <h3 class="text-2xl font-black text-gray-800 tracking-tight">Nhập Chi đoàn hàng loạt</h3>
-            
-            <div class="mt-3">
-                <button onclick="downloadClassTemplate()" class="group inline-flex items-center gap-2 text-[10px] font-black text-blue-500 uppercase tracking-widest hover:text-blue-700 transition-colors">
-                    <i class="fas fa-download animate-bounce"></i>
-                    Tải file mẫu Chi đoàn tại đây
-                </button>
-            </div>
-        </div>
 
-       <div class="space-y-4">
-    <input type="file" id="class-excel-input" accept=".xlsx, .xls" class="hidden" onchange="handleClassExcel(this)">
-    
-    <button onclick="document.getElementById('class-excel-input').click()" class="w-full py-12 border-2 border-dashed border-gray-100 rounded-[2.5rem] flex flex-col items-center justify-center gap-3 hover:border-green-400 hover:bg-green-50/50 transition-all group">
-        <i class="fas fa-cloud-upload-alt text-4xl text-gray-200 group-hover:text-green-500"></i>
-        <span id="class-file-name" class="text-[10px] font-bold text-gray-400 group-hover:text-green-600 uppercase tracking-widest text-center px-4">
-            Nhấp để chọn file Excel
-        </span>
-    </button>
-</div>
-<div class="mt-8 flex gap-3">
-    <button onclick="closeImportClassModal()" class="flex-grow py-4 text-gray-400 font-bold text-[10px] uppercase hover:bg-gray-50 rounded-2xl transition-all">Hủy bỏ</button>
-    
-    <button id="confirm-import-class-btn" onclick="processImportClass()" disabled 
-            class="flex-grow bg-gray-200 text-white py-4 rounded-2xl font-bold text-[10px] uppercase cursor-not-allowed tracking-widest transition-all shadow-lg">
-        Xác nhận nhập
-    </button>
-</div>
-
-<script src="status-logic.js"></script>
-<script src="bulk-task-import.js"></script>
-<script src="./bulk-delete-handler.js"></script>
+    <script src="status-logic.js"></script>
+    <script src="bulk-task-import.js"></script>
+    <script src="./bulk-delete-handler.js"></script>
     <script src="./script.js"></script>
 </body>
-</html>
